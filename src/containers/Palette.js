@@ -25,7 +25,7 @@ class Palette extends Component {
     });
     return (
       <div className="Palette">
-        <div>
+        <div className="slider">
           <Slider
             min={100}
             step={100}
