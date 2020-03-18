@@ -4,9 +4,16 @@ import Palette from "./containers/Palette";
 import { generatePalette } from "./utils/colorHelpers";
 
 import { Route, Switch } from "react-router-dom";
+import PaletteList from "./containers/PaletteList";
 
 function App() {
   const genPallete = generatePalette(seedColors[4]);
+
+  const findPalette = id => {
+    return seedColors.find(palette => {
+      return palette.id === id;
+    });
+  };
 
   return (
     <Switch>
@@ -14,17 +21,18 @@ function App() {
         exact
         path="/"
         render={() => {
-          return <h1>Pallet list</h1>;
+          return <PaletteList palettes={seedColors} />;
         }}
       />
       <Route
         exact
         path="/palette/:id"
-        render={() => <h1>Individual palette</h1>}
+        render={routeProps => (
+          <Palette
+            palette={generatePalette(findPalette(routeProps.match.params.id))}
+          />
+        )}
       />
-      {/*     <div>
-        <Palette palette={genPallete} />
-      </div> */}
     </Switch>
   );
 }
