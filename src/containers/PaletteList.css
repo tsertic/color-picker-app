@@ -1,0 +1,9 @@
+.PaletteList {
+  display: flex;
+  flex-direction: column;
+}
+
+.PaletteList a {
+  margin-top: 12px;
+  font-size: 1.3em;
+}
